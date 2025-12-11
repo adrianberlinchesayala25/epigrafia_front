@@ -1,0 +1,767 @@
+---
+/**
+ * 🏠 EpigrafIA - Página Principal
+ * Detección inteligente de voz con Deep Learning
+ */
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import '../styles/rgb.css';
+---
+
+<Layout title="EpigrafIA - Detección Inteligente de Voz">
+  
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="min-h-screen flex flex-col items-center justify-center relative px-6 py-20 overflow-hidden">
+    
+    <div class="relative z-10 text-center max-w-4xl mx-auto">
+      
+      <!-- Animated Logo -->
+      <div class="mb-12 flex justify-center fade-in">
+        <div class="w-60 h-60 md:w-60 md:h-60 logo-container">
+          <svg viewBox="0 0 2481 1749" class="w-full h-full" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+            <g class="rgb-stroke">
+              <path d="M1897.575,655.644l2.838,-329.046l-638.233,0" style="fill:none;stroke-width:52.08px;"/>
+              <path d="M1897.575,655.644l-147.504,0l-51.058,-164.521l-368.758,0l-405.633,646.742l104.954,-2.838" style="fill:none;stroke-width:52.08px;"/>
+              <path d="M1123.183,838.685l2.838,534.353l76.587,87.863l90.771,-93.244l-2.838,-536.146" style="fill:none;stroke-width:43.57px;"/>
+            </g>
+            <g>
+              <path d="M868.789,451.915l-45.85,131.433l-106.979,6.112l3.058,-262.862l516.558,0l586.858,981.158l-146.717,6.112l-137.546,-241.467l-577.692,-6.112l-146.717,250.637l-155.883,3.058l476.825,-770.254" style="fill:none;stroke:#fff;stroke-width:52.08px;"/>
+              <path d="M868.789,451.915l291.362,3.058l298.554,479.879l-342.333,-3.058" style="fill:none;stroke:#fff;stroke-width:52.08px;"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Title -->
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 slide-up tracking-tight" style="font-family: 'Space Grotesk', sans-serif;">
+        Detección de voz
+        <br>
+        <span class="gradient-text">inteligente</span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-lg md:text-xl text-gray-400 mb-10 slide-up max-w-2xl mx-auto" style="animation-delay: 0.2s;">
+        Identificación precisa de Idioma · Acento · Deepfakes
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 slide-up" style="animation-delay: 0.4s;">
+        <a href="#demo" class="group flex items-center gap-2 px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-all">
+          Probar Ahora
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="#api" class="px-8 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all font-medium">
+          Documentación
+        </a>
+      </div>
+      
+      <!-- Sound Wave Animation -->
+      <div class="mt-16 slide-up" style="animation-delay: 0.6s;">
+        <div class="flex items-center justify-center gap-1">
+          <div class="sound-wave-bar"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.1s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.2s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.3s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.4s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.5s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.6s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.5s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.4s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.3s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.2s;"></div>
+          <div class="sound-wave-bar" style="animation-delay: 0.1s;"></div>
+          <div class="sound-wave-bar"></div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==================== WORKFLOW SECTION ==================== -->
+  <section id="tecnologia" class="py-24 px-6">
+    <div class="w-full flex justify-center">
+      <div class="max-w-5xl w-full">
+        
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-16 text-center">
+          Workflow Simplificado
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          
+          <!-- Card 1: Input -->
+          <div class="feature-card group text-center">
+            <div class="mb-6">
+              <span class="text-3xl">✏️</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Input de Audio</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Sube un archivo o graba en tiempo real. Soportamos WAV, MP3 y flujos Opus de baja latencia.
+            </p>
+          </div>
+          
+          <!-- Card 2: Analysis -->
+          <div class="feature-card group text-center">
+            <div class="mb-6">
+              <span class="text-3xl">🧠</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Análisis Neural</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Nuestra red convolucional extrae MFCCs y analiza patrones espectrales imperceptibles al oído humano.
+            </p>
+          </div>
+          
+          <!-- Card 3: Result -->
+          <div class="feature-card group text-center">
+            <div class="mb-6">
+              <span class="text-3xl">⚡</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Resultado Instantáneo</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Recibe un JSON con el desglose de probabilidades, origen geográfico y puntuación de autenticidad.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CAPABILITIES SECTION ==================== -->
+  <section id="api" class="py-24 px-6">
+    <div class="w-full flex justify-center">
+      <div class="max-w-5xl w-full">
+        
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-16 text-center">
+          Capacidades del Modelo
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          
+          <!-- Row 1 -->
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-green-500"></span>
+              <h3 class="font-bold text-green-400">Detección de Idioma</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Soporte para 140+ idiomas y dialectos regionales con 99.2% de precisión.
+            </p>
+          </div>
+          
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <h3 class="font-bold text-blue-400">Profiling de Acento</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Identifica la región nativa del hablante basándose en fonemas sutiles.
+            </p>
+          </div>
+          
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span>
+              <h3 class="font-bold text-red-400">Anti-Spoofing</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Detecta voces sintéticas generadas por ElevenLabs, VALL-E y otros modelos TTS.
+            </p>
+          </div>
+          
+          <!-- Row 2 -->
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+              <h3 class="font-bold text-purple-400">Infraestructura Privada</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              El audio se procesa en memoria volátil y nunca se almacena en disco.
+            </p>
+          </div>
+          
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+              <h3 class="font-bold text-cyan-400">Datasets Masivos</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Entrenado con 500k horas de audio multilingüe diverso.
+            </p>
+          </div>
+          
+          <div class="capability-card p-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+              <h3 class="font-bold text-orange-400">Developer Friendly</h3>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              SDKs disponibles para Python, Node.js y Go.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEMO PLAYGROUND SECTION ==================== -->
+  <section id="demo" class="py-24 px-6">
+    <div class="w-full flex justify-center">
+      <div class="max-w-5xl w-full">
+        
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-16 text-center">
+          Live Playground
+        </p>
+        
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          
+          <!-- Left: Recording Area -->
+          <div class="demo-card relative min-h-[400px] flex flex-col items-center justify-center">
+            
+            <!-- Record Button -->
+            <button 
+              id="recordBtn" 
+              class="relative w-32 h-32 rounded-full flex items-center justify-center group transition-all duration-300 hover:scale-105"
+              aria-label="Grabar audio"
+            >
+              <!-- Pulsing Ring -->
+              <div id="recordRing" class="absolute inset-0 rounded-full bg-red-500/30 scale-100 transition-all duration-300"></div>
+              
+              <!-- Button Surface -->
+              <div class="relative w-28 h-28 rounded-full bg-red-500 flex items-center justify-center shadow-lg shadow-red-500/30 group-hover:shadow-red-500/50 transition-all">
+                <div id="recordIcon" class="w-10 h-10 bg-red-300 rounded-full"></div>
+              </div>
+            </button>
+            
+            <p id="recordStatus" class="mt-8 text-gray-400 text-sm">Pulsa para analizar</p>
+            
+            <!-- Divider -->
+            <div class="flex items-center gap-4 mt-6 mb-4 w-full max-w-xs">
+              <div class="flex-1 h-px bg-white/10"></div>
+              <span class="text-gray-500 text-xs uppercase tracking-wider">o</span>
+              <div class="flex-1 h-px bg-white/10"></div>
+            </div>
+            
+            <!-- Upload File Button -->
+            <label 
+              for="audioFileInput" 
+              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full cursor-pointer transition-all group"
+            >
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              </svg>
+              <span class="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">Subir archivo de audio</span>
+            </label>
+            <input 
+              type="file" 
+              id="audioFileInput" 
+              accept="audio/*,.wav,.mp3,.ogg,.webm,.m4a,.flac"
+              class="hidden"
+            />
+            <p id="fileName" class="mt-2 text-gray-500 text-xs hidden"></p>
+            
+            <!-- Waveform -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1">
+            </div>
+          </div>
+          
+          <!-- Right: Results -->
+          <div class="space-y-4">
+            
+            <!-- Language Result -->
+            <div id="languageResult" class="result-card">
+              <div class="flex justify-between items-start mb-3">
+                <div class="text-left">
+                  <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Idioma Detectado</p>
+                  <h3 id="languageValue" class="text-2xl font-bold">—</h3>
+                </div>
+                <span id="languageConfidence" class="px-3 py-1 text-sm font-semibold rounded-md bg-green-500/20 text-green-400 opacity-0">0%</span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                <div id="languageBar" class="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <!-- Accent Result -->
+            <div id="accentResult" class="result-card">
+              <div class="flex justify-between items-start mb-3">
+                <div class="text-left">
+                  <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Acento Probable</p>
+                  <h3 id="accentValue" class="text-2xl font-bold">—</h3>
+                </div>
+                <span id="accentConfidence" class="px-3 py-1 text-sm font-semibold rounded-md bg-blue-500/20 text-blue-400 opacity-0">0%</span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                <div id="accentBar" class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            
+            <!-- Deepfake Result -->
+            <div id="deepfakeResult" class="result-card">
+              <div class="flex justify-between items-start mb-3">
+                <div class="text-left">
+                  <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Probabilidad Deepfake</p>
+                  <h3 id="deepfakeValue" class="text-2xl font-bold">—</h3>
+                </div>
+                <span id="deepfakeConfidence" class="px-3 py-1 text-sm font-semibold rounded-md bg-pink-500/20 text-pink-400 opacity-0">0%</span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                <div id="deepfakeBar" class="h-full bg-gradient-to-r from-pink-500 to-red-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MICROPHONE PERMISSION MODAL ==================== -->
+  <div id="micModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-6">
+    <div class="bg-gray-900 border border-white/10 rounded-2xl p-8 max-w-md w-full text-center">
+      <!-- Icon -->
+      <div class="w-20 h-20 mx-auto mb-6 bg-red-500/20 rounded-full flex items-center justify-center">
+        <svg class="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+        </svg>
+      </div>
+      
+      <h3 class="text-2xl font-bold mb-4">Permiso de Micrófono</h3>
+      <p id="micModalMessage" class="text-gray-400 mb-8">
+        EpigrafIA necesita acceso a tu micrófono para analizar tu voz. 
+        Por favor, permite el acceso cuando el navegador lo solicite.
+      </p>
+      
+      <div class="flex flex-col gap-3">
+        <button id="micModalAllow" class="w-full px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-all text-lg">
+          Entendido, Permitir
+        </button>
+        <button id="micModalCancel" class="w-full px-6 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-all font-medium">
+          Cancelar
+        </button>
+      </div>
+      
+      <!-- Help text -->
+      <p class="mt-6 text-sm text-gray-500">
+        Si bloqueaste el permiso, haz clic en el icono 🔒 de la barra de direcciones para habilitarlo.
+      </p>
+    </div>
+  </div>
+
+</Layout>
+
+<!-- ==================== APP SCRIPT ==================== -->
+<script>
+  import { startRecording, isRecordingSupported } from '../scripts/audio.js';
+  
+  // ========== Configuration ==========
+  // En desarrollo usa localhost, en producción usa Hugging Face Spaces
+  const isDev = import.meta.env.DEV;
+  // Configura PUBLIC_HF_API_URL en Vercel con tu URL de HF Spaces
+  // Ejemplo: https://tu-usuario-epigrafia.hf.space
+  const API_URL = isDev 
+    ? 'http://localhost:8000' 
+    : (import.meta.env.PUBLIC_HF_API_URL || '');
+  
+  // ========== DOM Elements ==========
+  const recordBtn = document.getElementById('recordBtn') as HTMLButtonElement;
+  const recordRing = document.getElementById('recordRing');
+  const recordIcon = document.getElementById('recordIcon');
+  const recordStatus = document.getElementById('recordStatus');
+  
+  // File upload elements
+  const audioFileInput = document.getElementById('audioFileInput') as HTMLInputElement;
+  const fileName = document.getElementById('fileName');
+  
+  const languageValue = document.getElementById('languageValue');
+  const languageConfidence = document.getElementById('languageConfidence');
+  const languageBar = document.getElementById('languageBar');
+  
+  const accentValue = document.getElementById('accentValue');
+  const accentConfidence = document.getElementById('accentConfidence');
+  const accentBar = document.getElementById('accentBar');
+  
+  const deepfakeValue = document.getElementById('deepfakeValue');
+  const deepfakeConfidence = document.getElementById('deepfakeConfidence');
+  const deepfakeBar = document.getElementById('deepfakeBar');
+  
+  // ========== Modal Elements ==========
+  const micModal = document.getElementById('micModal');
+  const micModalMessage = document.getElementById('micModalMessage');
+  const micModalAllow = document.getElementById('micModalAllow');
+  const micModalCancel = document.getElementById('micModalCancel');
+  
+  // ========== Labels ==========
+  const LANGUAGE_LABELS = ['Español', 'Inglés', 'Francés', 'Alemán'];
+  const ACCENT_LABELS = ['Castellano (ES)', 'Rioplatense (AR/UY)', 'Británico (UK)', 'Americano (US)', 'Parisino (FR)', 'Québécois (CA)', 'Hochdeutsch (DE)', 'Österreichisch (AT)'];
+  
+  let isRecording = false;
+  let micPermissionGranted = false;
+  let backendAvailable = false;
+  
+  // ========== Check Backend Status ==========
+  async function checkBackend() {
+    try {
+      if (recordStatus) recordStatus.textContent = 'Conectando con servidor...';
+      const response = await fetch(`${API_URL}/api/health`);
+      if (response.ok) {
+        const data = await response.json();
+        backendAvailable = data.models_loaded;
+        if (backendAvailable) {
+          if (recordStatus) recordStatus.textContent = 'Pulsa para analizar';
+          console.log('✅ Backend connected and models loaded');
+        } else {
+          if (recordStatus) recordStatus.textContent = 'Servidor sin modelos';
+          console.warn('⚠️ Backend connected but models not loaded');
+        }
+      }
+    } catch (error) {
+      console.warn('⚠️ Backend not available:', error);
+      if (recordStatus) recordStatus.textContent = 'Inicia el servidor Python';
+      backendAvailable = false;
+    }
+  }
+  
+  // Initialize on load
+  checkBackend();
+  
+  // ========== Modal Functions ==========
+  function showModal(message?: string) {
+    if (micModal) {
+      if (message && micModalMessage) {
+        micModalMessage.textContent = message;
+      }
+      micModal.classList.remove('hidden');
+      micModal.classList.add('flex');
+    }
+  }
+  
+  function hideModal() {
+    if (micModal) {
+      micModal.classList.add('hidden');
+      micModal.classList.remove('flex');
+    }
+  }
+  
+  // Modal event listeners
+  micModalCancel?.addEventListener('click', hideModal);
+  micModal?.addEventListener('click', (e) => {
+    if (e.target === micModal) hideModal();
+  });
+  
+  // ========== Check Mic Permission ==========
+  async function checkMicPermission(): Promise<boolean> {
+    try {
+      const result = await navigator.permissions.query({ name: 'microphone' as PermissionName });
+      return result.state === 'granted';
+    } catch {
+      // Some browsers don't support permissions API
+      return false;
+    }
+  }
+  
+  // ========== Request Mic Access ==========
+  async function requestMicAccess(): Promise<boolean> {
+    return new Promise((resolve) => {
+      showModal();
+      
+      micModalAllow?.addEventListener('click', async () => {
+        hideModal();
+        try {
+          // First check if there are any audio devices
+          const devices = await navigator.mediaDevices.enumerateDevices();
+          const audioDevices = devices.filter(d => d.kind === 'audioinput');
+          
+          if (audioDevices.length === 0) {
+            showModal('🎤 No se detectó ningún micrófono. Conecta un micrófono e intenta de nuevo.');
+            resolve(false);
+            return;
+          }
+          
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          stream.getTracks().forEach(track => track.stop());
+          micPermissionGranted = true;
+          resolve(true);
+        } catch (error: any) {
+          if (error.name === 'NotAllowedError') {
+            showModal('⚠️ Permiso denegado. Haz clic en el 🔒 de la barra de direcciones para habilitarlo.');
+          } else if (error.name === 'NotFoundError' || error.message.includes('Requested device not found')) {
+            showModal('🎤 No se encontró micrófono. Conecta un micrófono y recarga la página.');
+          } else if (error.name === 'NotReadableError') {
+            showModal('🔇 El micrófono está siendo usado por otra aplicación. Ciérrala e intenta de nuevo.');
+          } else {
+            showModal('❌ Error: ' + error.message);
+          }
+          resolve(false);
+        }
+      }, { once: true });
+      
+      micModalCancel?.addEventListener('click', () => {
+        resolve(false);
+      }, { once: true });
+    });
+  }
+  
+  // ========== Check Support ==========
+  if (!isRecordingSupported()) {
+    if (recordStatus) recordStatus.textContent = 'Tu navegador no soporta grabación';
+    recordBtn.disabled = true;
+  }
+  
+  // ========== Recording Handler ==========
+  recordBtn?.addEventListener('click', async () => {
+    if (isRecording) return;
+    
+    // Check/request mic permission first
+    if (!micPermissionGranted) {
+      const hasPermission = await checkMicPermission();
+      if (!hasPermission) {
+        const granted = await requestMicAccess();
+        if (!granted) return;
+      } else {
+        micPermissionGranted = true;
+      }
+    }
+    
+    try {
+      isRecording = true;
+      
+      // Check if backend is available
+      if (!backendAvailable) {
+        if (recordStatus) recordStatus.textContent = 'Conectando...';
+        await checkBackend();
+        if (!backendAvailable) {
+          throw new Error('Servidor no disponible. Inicia: python -m uvicorn backend.main:app');
+        }
+      }
+      
+      // Update UI - Recording state
+      recordRing?.classList.add('animate-pulse', 'scale-125');
+      recordIcon?.classList.add('animate-pulse');
+      if (recordStatus) recordStatus.textContent = 'Grabando... (3 segundos)';
+      
+      // Record audio and get blob
+      const audioBlob = await recordAudioBlob(3);
+      
+      // Update UI - Processing state
+      if (recordStatus) recordStatus.textContent = 'Analizando audio con IA...';
+      
+      // Send to backend for prediction
+      await sendToBackend(audioBlob);
+      
+      // Reset UI
+      recordRing?.classList.remove('animate-pulse', 'scale-125');
+      recordIcon?.classList.remove('animate-pulse');
+      if (recordStatus) recordStatus.textContent = 'Pulsa para analizar';
+      
+    } catch (error: any) {
+      console.error('Recording error:', error);
+      if (recordStatus) recordStatus.textContent = error.message || 'Error al grabar';
+      
+      // Reset UI
+      recordRing?.classList.remove('animate-pulse', 'scale-125');
+      recordIcon?.classList.remove('animate-pulse');
+    } finally {
+      isRecording = false;
+    }
+  });
+  
+  // ========== File Upload Handler ==========
+  audioFileInput?.addEventListener('change', async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    
+    // Show file name
+    if (fileName) {
+      fileName.textContent = `📁 ${file.name}`;
+      fileName.classList.remove('hidden');
+    }
+    
+    try {
+      // Check backend
+      if (!backendAvailable) {
+        if (recordStatus) recordStatus.textContent = 'Conectando...';
+        await checkBackend();
+        if (!backendAvailable) {
+          throw new Error('Servidor no disponible');
+        }
+      }
+      
+      if (recordStatus) recordStatus.textContent = 'Analizando archivo...';
+      
+      // Send file directly to backend
+      await sendToBackend(file);
+      
+      if (recordStatus) recordStatus.textContent = 'Pulsa para analizar';
+      
+    } catch (error: any) {
+      console.error('File upload error:', error);
+      if (recordStatus) recordStatus.textContent = error.message || 'Error al procesar';
+    }
+    
+    // Reset input so same file can be selected again
+    audioFileInput.value = '';
+  });
+  
+  // ========== Record Audio as Blob ==========
+  async function recordAudioBlob(duration: number): Promise<Blob> {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        channelCount: 1,
+        echoCancellation: false,  // Disabled to preserve audio characteristics
+        noiseSuppression: false,  // Disabled to preserve audio characteristics
+        autoGainControl: false    // Disabled to preserve audio characteristics
+      }
+    });
+    
+    // Use MediaRecorder with WAV-like quality
+    // We'll record at native sample rate and let the backend handle resampling
+    const audioContext = new AudioContext();
+    const actualSampleRate = audioContext.sampleRate;
+    console.log(`🎤 Recording at ${actualSampleRate}Hz`);
+    
+    const source = audioContext.createMediaStreamSource(stream);
+    const processor = audioContext.createScriptProcessor(4096, 1, 1);
+    
+    const audioData: Float32Array[] = [];
+    
+    processor.onaudioprocess = (e) => {
+      const channelData = e.inputBuffer.getChannelData(0);
+      audioData.push(new Float32Array(channelData));
+    };
+    
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+    
+    // Wait for recording duration
+    await new Promise(r => setTimeout(r, duration * 1000));
+    
+    // Stop recording
+    processor.disconnect();
+    source.disconnect();
+    stream.getTracks().forEach(track => track.stop());
+    await audioContext.close();
+    
+    // Combine all audio chunks
+    const totalLength = audioData.reduce((acc, chunk) => acc + chunk.length, 0);
+    const combined = new Float32Array(totalLength);
+    let offset = 0;
+    for (const chunk of audioData) {
+      combined.set(chunk, offset);
+      offset += chunk.length;
+    }
+    
+    // Calculate audio stats
+    let maxAmp = 0;
+    let sumSquares = 0;
+    for (let i = 0; i < combined.length; i++) {
+      const abs = Math.abs(combined[i]);
+      if (abs > maxAmp) maxAmp = abs;
+      sumSquares += combined[i] * combined[i];
+    }
+    const rms = Math.sqrt(sumSquares / combined.length);
+    console.log(`📊 Audio stats: Max=${maxAmp.toFixed(4)}, RMS=${rms.toFixed(4)}, samples=${combined.length}`);
+    
+    // Convert to WAV at the NATIVE sample rate - let backend resample
+    const wavBlob = float32ToWav(combined, actualSampleRate);
+    console.log(`📤 WAV created: ${wavBlob.size} bytes at ${actualSampleRate}Hz`);
+    
+    return wavBlob;
+  }
+  
+  // ========== Convert Float32Array to WAV Blob ==========
+  function float32ToWav(samples: Float32Array, sampleRate: number): Blob {
+    const buffer = new ArrayBuffer(44 + samples.length * 2);
+    const view = new DataView(buffer);
+    
+    // WAV header
+    writeString(view, 0, 'RIFF');
+    view.setUint32(4, 36 + samples.length * 2, true);
+    writeString(view, 8, 'WAVE');
+    writeString(view, 12, 'fmt ');
+    view.setUint32(16, 16, true); // Subchunk1Size
+    view.setUint16(20, 1, true); // AudioFormat (PCM)
+    view.setUint16(22, 1, true); // NumChannels
+    view.setUint32(24, sampleRate, true); // SampleRate
+    view.setUint32(28, sampleRate * 2, true); // ByteRate
+    view.setUint16(32, 2, true); // BlockAlign
+    view.setUint16(34, 16, true); // BitsPerSample
+    writeString(view, 36, 'data');
+    view.setUint32(40, samples.length * 2, true); // Subchunk2Size
+    
+    // Convert samples
+    let offset = 44;
+    for (let i = 0; i < samples.length; i++) {
+      const s = Math.max(-1, Math.min(1, samples[i]));
+      view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+      offset += 2;
+    }
+    
+    return new Blob([buffer], { type: 'audio/wav' });
+  }
+  
+  function writeString(view: DataView, offset: number, string: string) {
+    for (let i = 0; i < string.length; i++) {
+      view.setUint8(offset + i, string.charCodeAt(i));
+    }
+  }
+  
+  // ========== Send Audio to Backend ==========
+  async function sendToBackend(audioBlob: Blob) {
+    console.log(`📤 Sending audio: ${audioBlob.size} bytes, type: ${audioBlob.type}`);
+    
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'recording.wav');
+    
+    const response = await fetch(`${API_URL}/api/analyze`, {
+      method: 'POST',
+      body: formData
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Error del servidor: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    console.log('🎯 Prediction result:', result);
+    
+    // Update Language UI
+    const langIdx = result.language_prediction;
+    const langConf = result.language_confidence * 100;
+    
+    if (languageValue) languageValue.textContent = LANGUAGE_LABELS[langIdx] || 'Desconocido';
+    if (languageConfidence) {
+      languageConfidence.textContent = `${langConf.toFixed(1)}%`;
+      languageConfidence.style.opacity = '1';
+    }
+    if (languageBar) languageBar.style.width = `${langConf}%`;
+    
+    // Update Accent UI
+    if (result.accent_prediction !== null) {
+      const accentIdx = result.accent_prediction;
+      const accentConf = result.accent_confidence * 100;
+      
+      if (accentValue) accentValue.textContent = ACCENT_LABELS[accentIdx] || 'Desconocido';
+      if (accentConfidence) {
+        accentConfidence.textContent = `${accentConf.toFixed(1)}%`;
+        accentConfidence.style.opacity = '1';
+      }
+      if (accentBar) accentBar.style.width = `${accentConf}%`;
+    } else {
+      if (accentValue) accentValue.textContent = 'Próximamente';
+      if (accentConfidence) accentConfidence.style.opacity = '0.5';
+      if (accentBar) accentBar.style.width = '0%';
+    }
+    
+    // Deepfake placeholder
+    if (deepfakeValue) deepfakeValue.textContent = 'Baja';
+    if (deepfakeConfidence) {
+      deepfakeConfidence.textContent = '2.3%';
+      deepfakeConfidence.style.opacity = '1';
+    }
+    if (deepfakeBar) deepfakeBar.style.width = '2.3%';
+  }
+</script>

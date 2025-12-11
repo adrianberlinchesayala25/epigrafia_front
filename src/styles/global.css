@@ -1,0 +1,248 @@
+/* ============================================
+   EPIGRAFIA - PREMIUM DARK UI
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ========== CSS VARIABLES ========== */
+:root {
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --cursor-size: 24px;
+  --cursor-dot-size: 6px;
+}
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-bg);
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Show default cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ========== CUSTOM RGB CURSOR ========== */
+.custom-cursor {
+  position: fixed;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: transparent;
+  background: transparent;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.3s;
+  animation: cursor-rainbow 8s linear infinite;
+}
+
+.custom-cursor.hover {
+  width: calc(var(--cursor-size) * 1.5);
+  height: calc(var(--cursor-size) * 1.5);
+}
+
+.cursor-dot {
+  position: fixed;
+  width: var(--cursor-dot-size);
+  height: var(--cursor-dot-size);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  animation: dot-rainbow 8s linear infinite;
+}
+
+.cursor-dot.hover {
+  animation: dot-rainbow 2s linear infinite;
+}
+
+@keyframes cursor-rainbow {
+  0%   { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+  14%  { border-color: #ff8c00; box-shadow: 0 0 15px rgba(255, 140, 0, 0.4); }
+  28%  { border-color: #ffff00; box-shadow: 0 0 15px rgba(255, 255, 0, 0.4); }
+  42%  { border-color: #00ff00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); }
+  57%  { border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+  71%  { border-color: #0080ff; box-shadow: 0 0 15px rgba(0, 128, 255, 0.4); }
+  85%  { border-color: #ff00ff; box-shadow: 0 0 15px rgba(255, 0, 255, 0.4); }
+  100% { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+}
+
+@keyframes dot-rainbow {
+  0%   { background: #ff0000; }
+  14%  { background: #ff8c00; }
+  28%  { background: #ffff00; }
+  42%  { background: #00ff00; }
+  57%  { background: #00ffff; }
+  71%  { background: #0080ff; }
+  85%  { background: #ff00ff; }
+  100% { background: #ff0000; }
+}
+
+/* ========== GLASSMORPHISM ========== */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #333, #222);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #444, #333);
+}
+
+/* ========== SELECTION ========== */
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #ffffff;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* ========== CARDS ========== */
+.feature-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.capability-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.capability-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.demo-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.result-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ========== SOUND WAVE ANIMATION ========== */
+.sound-wave-bar {
+  width: 3px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  animation: sound-wave 1.2s ease-in-out infinite;
+}
+
+@keyframes sound-wave {
+  0%, 100% {
+    height: 20px;
+    opacity: 0.3;
+  }
+  50% {
+    height: 40px;
+    opacity: 0.8;
+  }
+}
+
+/* ========== FOCUS STATES ========== */
+button:focus-visible,
+a:focus-visible {
+  outline: 10px solid rgba(139, 92, 246, 0.6);
+  outline-offset: 4px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .feature-card,
+  .capability-card,
+  .demo-card {
+    padding: 1.5rem;
+  }
+}
