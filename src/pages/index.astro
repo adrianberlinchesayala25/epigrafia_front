@@ -714,7 +714,31 @@ import "../styles/rgb.css";
       if (recordStatus) recordStatus.textContent = "Analizando audio con IA...";
 
       // Send to backend for prediction
-      await sendToBackend(audioBlob);
+      const result = await sendToBackend(audioBlob);
+
+      // Update Language UI
+      const langIdx = result.language.detected;
+      const langConf = result.language.confidence * 100;
+
+      if (languageValue) languageValue.textContent = langIdx || "Desconocido";
+      if (languageConfidence) {
+        languageConfidence.textContent = `${langConf.toFixed(1)}%`;
+        languageConfidence.style.opacity = "1";
+      }
+      if (languageBar) languageBar.style.width = `${langConf}%`;
+
+      // Accent placeholder
+      if (accentValue) accentValue.textContent = "Próximamente";
+      if (accentConfidence) accentConfidence.style.opacity = "0.5";
+      if (accentBar) accentBar.style.width = "0%";
+
+      // Deepfake placeholder
+      if (deepfakeValue) deepfakeValue.textContent = "Baja";
+      if (deepfakeConfidence) {
+        deepfakeConfidence.textContent = "2.3%";
+        deepfakeConfidence.style.opacity = "1";
+      }
+      if (deepfakeBar) deepfakeBar.style.width = "2.3%";
 
       // Reset UI
       recordRing?.classList.remove("animate-pulse", "scale-125");
@@ -757,7 +781,31 @@ import "../styles/rgb.css";
       if (recordStatus) recordStatus.textContent = "Analizando archivo...";
 
       // Send file directly to backend
-      await sendToBackend(file);
+      const result = await sendToBackend(file);
+
+      // Update Language UI
+      const langIdx = result.language.detected;
+      const langConf = result.language.confidence * 100;
+
+      if (languageValue) languageValue.textContent = langIdx || "Desconocido";
+      if (languageConfidence) {
+        languageConfidence.textContent = `${langConf.toFixed(1)}%`;
+        languageConfidence.style.opacity = "1";
+      }
+      if (languageBar) languageBar.style.width = `${langConf}%`;
+
+      // Accent placeholder
+      if (accentValue) accentValue.textContent = "Próximamente";
+      if (accentConfidence) accentConfidence.style.opacity = "0.5";
+      if (accentBar) accentBar.style.width = "0%";
+
+      // Deepfake placeholder
+      if (deepfakeValue) deepfakeValue.textContent = "Baja";
+      if (deepfakeConfidence) {
+        deepfakeConfidence.textContent = "2.3%";
+        deepfakeConfidence.style.opacity = "1";
+      }
+      if (deepfakeBar) deepfakeBar.style.width = "2.3%";
 
       if (recordStatus) recordStatus.textContent = "Pulsa para analizar";
     } catch (error: any) {
@@ -886,54 +934,38 @@ import "../styles/rgb.css";
     const formData = new FormData();
     formData.append("audio", audioBlob, "recording.wav");
 
-    const response = await fetch(`${API_URL}/api/analyze`, {
-      method: "POST",
-      body: formData,
-    });
+    // Create abort controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-    if (!response.ok) {
-      throw new Error(`Error del servidor: ${response.status}`);
-    }
+    try {
+      const response = await fetch(`${API_URL}/api/analyze`, {
+        method: "POST",
+        body: formData,
+        signal: controller.signal,
+      });
 
-    const result = await response.json();
-    console.log("🎯 Prediction result:", result);
+      clearTimeout(timeoutId);
 
-    // Update Language UI
-    const langIdx = result.language_prediction;
-    const langConf = result.language_confidence * 100;
-
-    if (languageValue)
-      languageValue.textContent = LANGUAGE_LABELS[langIdx] || "Desconocido";
-    if (languageConfidence) {
-      languageConfidence.textContent = `${langConf.toFixed(1)}%`;
-      languageConfidence.style.opacity = "1";
-    }
-    if (languageBar) languageBar.style.width = `${langConf}%`;
-
-    // Update Accent UI
-    if (result.accent_prediction !== null) {
-      const accentIdx = result.accent_prediction;
-      const accentConf = result.accent_confidence * 100;
-
-      if (accentValue)
-        accentValue.textContent = ACCENT_LABELS[accentIdx] || "Desconocido";
-      if (accentConfidence) {
-        accentConfidence.textContent = `${accentConf.toFixed(1)}%`;
-        accentConfidence.style.opacity = "1";
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ Server error:", errorText);
+        throw new Error(
+          `Error del servidor: ${response.status} - ${errorText}`,
+        );
       }
-      if (accentBar) accentBar.style.width = `${accentConf}%`;
-    } else {
-      if (accentValue) accentValue.textContent = "Próximamente";
-      if (accentConfidence) accentConfidence.style.opacity = "0.5";
-      if (accentBar) accentBar.style.width = "0%";
-    }
 
-    // Deepfake placeholder
-    if (deepfakeValue) deepfakeValue.textContent = "Baja";
-    if (deepfakeConfidence) {
-      deepfakeConfidence.textContent = "2.3%";
-      deepfakeConfidence.style.opacity = "1";
+      const result = await response.json();
+      console.log("🎯 Prediction result:", result);
+      return result;
+    } catch (error: any) {
+      clearTimeout(timeoutId);
+      if (error.name === "AbortError") {
+        throw new Error(
+          "El servidor tardó demasiado en responder. Por favor, intenta de nuevo.",
+        );
+      }
+      throw error;
     }
-    if (deepfakeBar) deepfakeBar.style.width = "2.3%";
   }
 </script>
