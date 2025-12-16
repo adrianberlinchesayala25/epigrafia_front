@@ -485,11 +485,13 @@ import "../styles/rgb.css";
   import { isRecordingSupported } from "../scripts/audio.js";
 
   // ========== Configuration ==========
-  // En desarrollo usa localhost, en producción usa la URL del backend en Render
-  const isDev = import.meta.env.DEV;
-  const API_URL = isDev
-    ? "http://localhost:8000"
-    : "https://epigrafia-back.onrender.com"; // Backend en Render
+  // En desarrollo usa localhost, en producción usa la variable de entorno
+  const API_URL =
+    import.meta.env.PUBLIC_API_URL ||
+    import.meta.env.NEXT_PUBLIC_API_URL ||
+    (import.meta.env.DEV
+      ? "http://localhost:8000"
+      : "https://epigrafia-back.onrender.com");
 
   // ========== DOM Elements ==========
   const recordBtn = document.getElementById("recordBtn") as HTMLButtonElement;
