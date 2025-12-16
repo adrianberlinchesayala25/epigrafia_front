@@ -716,18 +716,32 @@ import "../styles/rgb.css";
       // Send to backend for prediction
       const result = await sendToBackend(audioBlob);
 
+      console.log("📊 Full result:", result);
+      console.log("📊 Language object:", result.language);
+
       // Update Language UI
       const langName = result.language.detected;
       const langConf = result.language.confidence * 100;
 
+      console.log("📊 Language name:", langName);
+      console.log("📊 Language confidence:", langConf);
+
       // Capitalize first letter
       const displayName = langName.charAt(0).toUpperCase() + langName.slice(1);
 
-      if (languageValue)
+      console.log("📊 Display name:", displayName);
+
+      if (languageValue) {
         languageValue.textContent = displayName || "Desconocido";
+        console.log("✅ Updated languageValue to:", displayName);
+      }
       if (languageConfidence) {
         languageConfidence.textContent = `${langConf.toFixed(1)}%`;
         languageConfidence.style.opacity = "1";
+        console.log(
+          "✅ Updated languageConfidence to:",
+          langConf.toFixed(1) + "%",
+        );
       }
       if (languageBar) languageBar.style.width = `${langConf}%`;
 
