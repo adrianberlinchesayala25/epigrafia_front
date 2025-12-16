@@ -717,10 +717,14 @@ import "../styles/rgb.css";
       const result = await sendToBackend(audioBlob);
 
       // Update Language UI
-      const langIdx = result.language.detected;
+      const langName = result.language.detected;
       const langConf = result.language.confidence * 100;
 
-      if (languageValue) languageValue.textContent = langIdx || "Desconocido";
+      // Capitalize first letter
+      const displayName = langName.charAt(0).toUpperCase() + langName.slice(1);
+
+      if (languageValue)
+        languageValue.textContent = displayName || "Desconocido";
       if (languageConfidence) {
         languageConfidence.textContent = `${langConf.toFixed(1)}%`;
         languageConfidence.style.opacity = "1";
@@ -784,10 +788,14 @@ import "../styles/rgb.css";
       const result = await sendToBackend(file);
 
       // Update Language UI
-      const langIdx = result.language.detected;
+      const langName = result.language.detected;
       const langConf = result.language.confidence * 100;
 
-      if (languageValue) languageValue.textContent = langIdx || "Desconocido";
+      // Capitalize first letter
+      const displayName = langName.charAt(0).toUpperCase() + langName.slice(1);
+
+      if (languageValue)
+        languageValue.textContent = displayName || "Desconocido";
       if (languageConfidence) {
         languageConfidence.textContent = `${langConf.toFixed(1)}%`;
         languageConfidence.style.opacity = "1";
