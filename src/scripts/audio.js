@@ -35,11 +35,11 @@ export async function startRecording(duration = 3) {
         });
 
         const source = audioContext.createMediaStreamSource(mediaStream);
-        
+
         // Use ScriptProcessor to capture raw PCM data
         // Buffer size of 4096 is a good balance
         scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
-        
+
         audioData = [];
         isRecording = true;
 
@@ -84,7 +84,7 @@ export async function stopRecording() {
         scriptProcessor.disconnect();
         scriptProcessor = null;
     }
-    
+
     if (mediaStream) {
         mediaStream.getTracks().forEach(track => track.stop());
         mediaStream = null;
@@ -102,7 +102,7 @@ export async function stopRecording() {
 
     // Get actual sample rate used
     const actualSampleRate = audioContext?.sampleRate || SAMPLE_RATE;
-    
+
     if (audioContext) {
         await audioContext.close();
         audioContext = null;
