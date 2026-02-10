@@ -211,6 +211,35 @@ body {
   background: rgba(255, 255, 255, 0.04);
 }
 
+/* ========== PRICING CARDS ========== */
+.pricing-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.pricing-featured {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.pricing-featured:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 20px 40px -12px rgba(139, 92, 246, 0.25);
+}
+
+/* ========== GRADIENT BACKGROUNDS ========== */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
 /* ========== SOUND WAVE ANIMATION ========== */
 .sound-wave-bar {
   width: 3px;
