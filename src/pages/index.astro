@@ -699,49 +699,7 @@ import "../styles/rgb.css";
       if (recordStatus) recordStatus.textContent = "Analizando audio con IA...";
 
       // Send to backend for prediction
-      const result = await sendToBackend(audioBlob);
-
-      console.log("📊 Full result:", result);
-      console.log("📊 Language object:", result.language);
-
-      // Update Language UI
-      const langName = result.language.detected;
-      const langConf = result.language.confidence * 100;
-
-      console.log("📊 Language name:", langName);
-      console.log("📊 Language confidence:", langConf);
-
-      // Capitalize first letter
-      const displayName = langName.charAt(0).toUpperCase() + langName.slice(1);
-
-      console.log("📊 Display name:", displayName);
-
-      if (languageValue) {
-        languageValue.textContent = displayName || "Desconocido";
-        console.log("✅ Updated languageValue to:", displayName);
-      }
-      if (languageConfidence) {
-        languageConfidence.textContent = `${langConf.toFixed(1)}%`;
-        languageConfidence.style.opacity = "1";
-        console.log(
-          "✅ Updated languageConfidence to:",
-          langConf.toFixed(1) + "%",
-        );
-      }
-      if (languageBar) languageBar.style.width = `${langConf}%`;
-
-      // Accent placeholder
-      if (accentValue) accentValue.textContent = "Próximamente";
-      if (accentConfidence) accentConfidence.style.opacity = "0.5";
-      if (accentBar) accentBar.style.width = "0%";
-
-      // Deepfake placeholder
-      if (deepfakeValue) deepfakeValue.textContent = "Baja";
-      if (deepfakeConfidence) {
-        deepfakeConfidence.textContent = "2.3%";
-        deepfakeConfidence.style.opacity = "1";
-      }
-      if (deepfakeBar) deepfakeBar.style.width = "2.3%";
+      await sendToBackend(audioBlob);
 
       // Reset UI
       recordRing?.classList.remove("animate-pulse", "scale-125");
@@ -784,35 +742,7 @@ import "../styles/rgb.css";
       if (recordStatus) recordStatus.textContent = "Analizando archivo...";
 
       // Send file directly to backend
-      const result = await sendToBackend(file);
-
-      // Update Language UI
-      const langName = result.language.detected;
-      const langConf = result.language.confidence * 100;
-
-      // Capitalize first letter
-      const displayName = langName.charAt(0).toUpperCase() + langName.slice(1);
-
-      if (languageValue)
-        languageValue.textContent = displayName || "Desconocido";
-      if (languageConfidence) {
-        languageConfidence.textContent = `${langConf.toFixed(1)}%`;
-        languageConfidence.style.opacity = "1";
-      }
-      if (languageBar) languageBar.style.width = `${langConf}%`;
-
-      // Accent placeholder
-      if (accentValue) accentValue.textContent = "Próximamente";
-      if (accentConfidence) accentConfidence.style.opacity = "0.5";
-      if (accentBar) accentBar.style.width = "0%";
-
-      // Deepfake placeholder
-      if (deepfakeValue) deepfakeValue.textContent = "Baja";
-      if (deepfakeConfidence) {
-        deepfakeConfidence.textContent = "2.3%";
-        deepfakeConfidence.style.opacity = "1";
-      }
-      if (deepfakeBar) deepfakeBar.style.width = "2.3%";
+      await sendToBackend(file);
 
       if (recordStatus) recordStatus.textContent = "Pulsa para analizar";
     } catch (error: any) {
@@ -941,38 +871,99 @@ import "../styles/rgb.css";
     const formData = new FormData();
     formData.append("audio", audioBlob, "recording.wav");
 
-    // Create abort controller for timeout
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 210000); // 210 second timeout
+    const response = await fetch(`${API_URL}/api/analyze`, {
+      method: "POST",
+      body: formData,
+    });
 
-    try {
-      const response = await fetch(`${API_URL}/api/analyze`, {
-        method: "POST",
-        body: formData,
-        signal: controller.signal,
-      });
+    if (!response.ok) {
+      throw new Error(`Error del servidor: ${response.status}`);
+    }
 
-      clearTimeout(timeoutId);
+    const result = await response.json();
+    console.log("🎯 Prediction result:", result);
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("❌ Server error:", errorText);
-        throw new Error(
-          `Error del servidor: ${response.status} - ${errorText}`,
-        );
+    // Update Language UI
+    const langIdx = result.language_prediction;
+    const langConf = result.language_confidence * 100;
+
+    if (languageValue) languageValue.textContent = LANGUAGE_LABELS[langIdx] || "Desconocido";
+    if (languageConfidence) {
+      languageConfidence.textContent = `${langConf.toFixed(1)}%`;
+      languageConfidence.style.opacity = "1";
+    }
+    if (languageBar) languageBar.style.width = `${langConf}%`;
+
+    // Update Accent UI
+    if (result.accent_prediction !== null) {
+      const accentIdx = result.accent_prediction;
+      const accentConf = result.accent_confidence * 100;
+
+      if (accentValue) accentValue.textContent = ACCENT_LABELS[accentIdx] || "Desconocido";
+      if (accentConfidence) {
+        accentConfidence.textContent = `${accentConf.toFixed(1)}%`;
+        accentConfidence.style.opacity = "1";
+      }
+      if (accentBar) accentBar.style.width = `${accentConf}%`;
+    } else {
+      if (accentValue) accentValue.textContent = "Próximamente";
+      if (accentConfidence) accentConfidence.style.opacity = "0.5";
+      if (accentBar) accentBar.style.width = "0%";
+    }
+
+    // Update Deepfake/Spoofing detection UI
+    if (result.spoofing) {
+      const spoofing = result.spoofing;
+      const spoofConf = spoofing.spoof_probability * 100;
+      const isHuman = spoofing.is_genuine;
+
+      // Update label based on detection
+      if (deepfakeValue) {
+        if (isHuman) {
+          deepfakeValue.textContent = "Humano";
+          deepfakeValue.classList.remove("text-red-400");
+          deepfakeValue.classList.add("text-green-400");
+        } else {
+          deepfakeValue.textContent = "Artificial";
+          deepfakeValue.classList.remove("text-green-400");
+          deepfakeValue.classList.add("text-red-400");
+        }
       }
 
-      const result = await response.json();
-      console.log("🎯 Prediction result:", result);
-      return result;
-    } catch (error: any) {
-      clearTimeout(timeoutId);
-      if (error.name === "AbortError") {
-        throw new Error(
-          "El servidor tardó demasiado en responder. Por favor, intenta de nuevo.",
-        );
+      if (deepfakeConfidence) {
+        deepfakeConfidence.textContent = `${spoofConf.toFixed(1)}%`;
+        deepfakeConfidence.style.opacity = "1";
+        // Update color based on risk level
+        if (spoofConf < 30) {
+          deepfakeConfidence.className = "px-3 py-1 text-sm font-semibold rounded-md bg-green-500/20 text-green-400";
+        } else if (spoofConf < 70) {
+          deepfakeConfidence.className = "px-3 py-1 text-sm font-semibold rounded-md bg-yellow-500/20 text-yellow-400";
+        } else {
+          deepfakeConfidence.className = "px-3 py-1 text-sm font-semibold rounded-md bg-red-500/20 text-red-400";
+        }
       }
-      throw error;
+
+      if (deepfakeBar) {
+        deepfakeBar.style.width = `${spoofConf}%`;
+        // Update bar color based on risk
+        if (spoofConf < 30) {
+          deepfakeBar.className = "h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-700";
+        } else if (spoofConf < 70) {
+          deepfakeBar.className = "h-full bg-gradient-to-r from-yellow-500 to-orange-400 rounded-full transition-all duration-700";
+        } else {
+          deepfakeBar.className = "h-full bg-gradient-to-r from-pink-500 to-red-400 rounded-full transition-all duration-700";
+        }
+      }
+
+      console.log(`🔍 Spoofing: ${spoofing.label} (${spoofConf.toFixed(1)}% artificial)`);
+    } else {
+      // Fallback if spoofing detection not available
+      if (deepfakeValue) deepfakeValue.textContent = "No disponible";
+      if (deepfakeConfidence) {
+        deepfakeConfidence.textContent = "—";
+        deepfakeConfidence.style.opacity = "0.5";
+      }
+      if (deepfakeBar) deepfakeBar.style.width = "0%";
     }
   }
 </script>
