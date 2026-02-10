@@ -156,12 +156,11 @@ body {
 }
 
 .fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+  /* Animation disabled */
 }
 
 .slide-up {
-  animation: slide-up 0.8s ease-out forwards;
-  opacity: 0;
+  /* Animation disabled */
 }
 
 /* ========== CARDS ========== */
@@ -176,7 +175,6 @@ body {
 .feature-card:hover {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
 }
 
 .capability-card {
@@ -222,7 +220,6 @@ body {
 .pricing-card:hover {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-4px);
 }
 
 .pricing-featured {
