@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://epigrafia-backend.onrender.com/api/:path*"
+      "destination": "https://epigrafia-back.onrender.com/api/:path*"
     }
   ],
   "headers": [
